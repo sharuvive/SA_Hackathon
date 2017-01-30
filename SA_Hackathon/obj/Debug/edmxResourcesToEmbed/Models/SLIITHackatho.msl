@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SLIITHackathoModelStoreContainer" CdmEntityContainer="SLIITHackathoEntities">
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="SLIITHackathoModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="fid" ColumnName="fid" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SLIITHackathoModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="oid" ColumnName="oid" />
+          <ScalarProperty Name="stid" ColumnName="stid" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FoodOrder" TypeName="SLIITHackathoModel.FoodOrder" StoreEntitySet="FoodOrder">
+      <EndProperty Name="Food">
+        <ScalarProperty Name="fid" ColumnName="fid" />
+      </EndProperty>
+      <EndProperty Name="Order">
+        <ScalarProperty Name="oid" ColumnName="oid" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

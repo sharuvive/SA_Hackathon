@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SLIITHackathoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="fid" />
+    </Key>
+    <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Double" />
+    <NavigationProperty Name="Orders" Relationship="Self.FoodOrder" FromRole="Food" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Foods" Relationship="Self.FoodOrder" FromRole="Order" ToRole="Food" />
+  </EntityType>
+  <Association Name="FoodOrder">
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SLIITHackathoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <AssociationSet Name="FoodOrder" Association="Self.FoodOrder">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
